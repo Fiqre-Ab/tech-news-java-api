@@ -1,8 +1,7 @@
 package com.technews.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
+import jakarta.persistence.*; // ✅ Use Jakarta for Spring Boot 3+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,20 +10,19 @@ import java.util.Objects;
 @Table(name = "vote")
 public class Vote implements Serializable {
 
+
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ✅ Use IDENTITY for auto-increment
     private Integer id;
+
+    @Column(name = "user_id", nullable = false) // ✅ Ensure DB column mapping
     private Integer userId;
+
+    @Column(name = "post_id", nullable = false)
     private Integer postId;
 
-    public Vote() {
-    }
-
-    public Vote(Integer id, Integer userId, Integer postId) {
-        this.id = id;
-        this.userId = userId;
-        this.postId = postId;
-    }
+    public Vote() {}
 
     public Vote(Integer userId, Integer postId) {
         this.userId = userId;
@@ -60,14 +58,14 @@ public class Vote implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Vote)) return false;
         Vote vote = (Vote) o;
-        return Objects.equals(getId(), vote.getId()) &&
-                Objects.equals(getUserId(), vote.getUserId()) &&
-                Objects.equals(getPostId(), vote.getPostId());
+        return Objects.equals(id, vote.id) &&
+                Objects.equals(userId, vote.userId) &&
+                Objects.equals(postId, vote.postId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUserId(), getPostId());
+        return Objects.hash(id, userId, postId);
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.technews.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 
-import javax.persistence.*;
+
+import jakarta.validation.constraints.NotNull;
+
+import jakarta.persistence.*; //
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
