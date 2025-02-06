@@ -1,7 +1,7 @@
 package com.technews.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*; // ✅ Use Jakarta for Spring Boot 3+
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
